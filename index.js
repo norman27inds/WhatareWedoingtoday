@@ -33,3 +33,31 @@ $("#hour15 .input-area").val(localStorage.getItem("hour15"))
 $("#hour16 .input-area").val(localStorage.getItem("hour16"))
 $("#hour17 .input-area").val(localStorage.getItem("hour17"))
 
+// function to keep tack of the times to see if there past present or future
+function scrooge() {
+    //get current number of hours.
+    var rightNow = moment().hour(); // use of moment.js
+
+    // loop over time blocks
+    $(".time-block").each(function () {
+        var hours = parseInt($(this).attr("id").split("hour")[1]);
+
+        //check if we've moved past this time, click into css/html given classes of past, present, or future
+        if (hours < rightNow) {
+            $(this).addClass("past");
+            $(this).removeClass("future");
+            $(this).removeClass("present");
+        }
+        else if (hours === rightNow) {
+            $(this).removeClass("past");
+            $(this).addClass("present");
+            $(this).removeClass("future");
+        }
+        else {
+            $(this).removeClass("present");
+            $(this).removeClass("past");
+            $(this).addClass("future");
+        }
+    })
+}
+scrooge(); //re-run function
