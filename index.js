@@ -1,4 +1,3 @@
-
 $("#currentDay").text(moment().format("MMM Do YYYY"));
  
 $(".saveBtn").on("click", function () {
